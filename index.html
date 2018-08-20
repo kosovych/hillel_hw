@@ -5,9 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>HW 7</title>
+  <style>
+    button {
+      position: absolute;
+      top: calc(50% - 50px);
+      left: calc(50% - 150px);
+      transform: scale(1);
+      border: none;
+      background: none;
+      background: #ff32be; /* Old browsers */
+      background: -moz-linear-gradient(top, #ff32be 0%, #e6ff28 42%, #228ed6 68%, #c289ff 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, #ff32be 0%,#e6ff28 42%,#228ed6 68%,#c289ff 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, #ff32be 0%,#e6ff28 42%,#228ed6 68%,#c289ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff32be', endColorstr='#c289ff',GradientType=0 ); /* IE6-9 */
+      height: 100px;
+      width: 300px;
+      border-radius: 20px;
+      font-size: 48px;
+      color: blue;
+      box-shadow: 3px 3px 3px rgba(0, 0, 0, .7);
+      text-shadow: 2px 2px 2px rgba(0, 0, 0, .6);
+      transition: all 0.3s;
+    }
+
+    button:focus, button:active {
+      outline: none;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+  </style>
 </head>
 <body>
-  <script src="main1.js"></script>
+  
+  <script src="main1.js" async></script>
   <!-- <script src="main2.js"></script> -->
   <!-- <script src="main3.js"></script> -->
 </body>

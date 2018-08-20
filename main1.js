@@ -51,16 +51,13 @@ function isCorrectLenght(str) {
 
 ////////// Number Validation
 
+
 function checkNumb(numb) {
-  if(numb === null) {
-    alert('You deсide to exit');
-    return 
-  }
-  
+ 
   let _numb = parseFloat(numb);
   
   if (isNaN(_numb)) {
-    throw new Error ('It must be a number');
+    return false;
   }
   
   
@@ -104,6 +101,59 @@ function isMultipleofTen(numb) {
 
 let test = checkNumb(45);
 
+//////////
+
+function _calc(numb1, numb2) {
+  let resultArr = [];
+  resultArr.length = 1 + Math.max(numb1.length, numb2.length);
+
+  let N1MoreN2 = 0;
+  let N2MoreN2 = 0;
+
+  if (numb1.length > numb2.length) {
+    N1MoreN2 = numb1.length - numb2.length;
+
+  } else if (numb1.length < numb2.length) {
+    N2MoreN2 = numb2.length - numb1.length;
+  }
+
+  let delta = 0;
+  for (let i = resultArr.length; i >= 0; i--) {
+
+
+    let operand1 = +numb1[i - 1 - N2MoreN2] || 0;
+    let operand2 = +numb2[i - 1 - N1MoreN2] || 0;
+
+    sum = operand1 + operand2 + delta;
+
+    if (sum > 9) {
+      delta = 1;
+      sum = sum - 10;
+    } else {
+      delta = 0
+    }
+
+    if (sum === 0 && delta === 0) {
+      continue
+    } else resultArr[i] = sum;
+  }
+
+  return resultArr.join('');
+}
+
+////////// Is NaN function
+
+function _isNotNaN(numb) {
+  if(+numb === 0) {
+    alert('You deсide to exit');
+    return
+  }
+
+  if(!isNaN(+numb)) {
+    return true
+  } else return false
+}
+
 ////////// Open modal
 
 function modalLoop(el, func, message, checkingNumbForNull = false) {
@@ -123,7 +173,7 @@ function modalLoop(el, func, message, checkingNumbForNull = false) {
 
 ////////// Script
 
-(function() {
+function playWithMe() {
   let message1 = "Enter password"
   let passWord = modalLoop(prompt(message1),validatePassword, message1);
 
@@ -140,15 +190,25 @@ function modalLoop(el, func, message, checkingNumbForNull = false) {
     alert('You deсide to exit');
     return
   }
-  
-  if (numberForCheck === null) {
-    alert('You deсide to exit');
-    return
+
+  let message3 = 'Enter first number';
+  let message4 = 'Enter second number'
+
+  let numbObj = {
+    x: modalLoop(prompt(message3), _isNotNaN, message3),
+    y: modalLoop(prompt(message4), _isNotNaN, message4),
   }
+
+  alert(`The sum of two numbers is ${_calc(numbObj.x, numbObj.y)}`);
   
-  
-  // let calc = {
-  //   x: 
-  // } 
-  
-}());
+};
+
+playWithMe();
+
+let btn = document.createElement('button');
+btn.innerHTML = "Play Again";
+document.body.appendChild(btn);
+
+btn.onclick = function() {
+  playWithMe();
+}
