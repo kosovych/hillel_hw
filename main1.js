@@ -67,11 +67,15 @@ function checkNumb(numb) {
 }
 
 function isSimple(numb) {
+  if (numb <= 0) {
+    return false
+  }
+
   if((Math.ceil(numb) - Math.floor(numb) === 1)) {
     return false
   }
   
-  if (numb < 4 && numb > 0) {
+  if (numb < 4) {
     return true
   }
   
