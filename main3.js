@@ -7,11 +7,15 @@ function checkNumb(numb) {
 }
 
 function isSimple(numb) {
+  if(numb <=0) {
+    return false
+  }
+
   if((Math.ceil(numb) - Math.floor(numb) === 1)) {
     return false
   }
 
-  if (numb < 4 && numb > 0) {
+  if (numb < 4) {
     return true
   }
 
@@ -39,5 +43,5 @@ function isMultipleofTen(numb) {
   } else return false
 }
 
-let test = checkNumb(45);
+let test = checkNumb(0);
 console.log(test);
