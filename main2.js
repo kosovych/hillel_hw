@@ -13,11 +13,8 @@ function logBySunbol(str) {
 }
 
 function logAnotherMeth(str) {
-  for (let i = 0; i < str.length; i++) {
-    if (i === 7) {
-      console.log(str[i]);
-      i = 10;
-    }
-    console.log(str[i]);
-  }
+  console.log(str.substr(0,6));
+  console.log(str.substr(10, Infinity));
 }
+
+checkStrLenght('012345678911');
