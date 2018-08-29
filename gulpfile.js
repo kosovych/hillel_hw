@@ -5,7 +5,6 @@ var gulp = require('gulp'),
 	browserSync = require('browser-sync').create(),
 	browserify = require('browserify'),
 	sourse = require('vinyl-source-stream'),
-	ejs = require("gulp-ejs"),
 	uglify = require('gulp-uglify');
 	buffer = require('vinyl-buffer');
 	const babelify = require("babelify");
@@ -35,22 +34,16 @@ gulp.task('sass', () => {
 	}));
 });
 
-gulp.task('ejs', function() {
-	return gulp.src(['./src/templates/**/*.ejs', '!./src/templates/templ/**/*.ejs'])
-	.pipe(ejs({ msg: 'Hello Gulp!'}, {}, { ext: '.html' }))
-	.pipe(gulp.dest("./src"));
-});
 
 gulp.task('watch', () => {
 	gulp.watch('src/**/*.html').on('change', browserSync.reload);
 	gulp.watch('src/scss/**/*.scss', gulp.series('sass'));
 	gulp.watch('src/js/main.js', gulp.series('js'));
 	gulp.watch('src/js/bundle.js').on('change', browserSync.reload);
-	gulp.watch('src/templates/**/*.ejs', gulp.series('ejs'));
 });
 
 gulp.task('default', gulp.series(
-	gulp.parallel('sass', 'ejs'),
+	gulp.parallel('sass'),
 	gulp.parallel('watch', 'serve')
 ));
 

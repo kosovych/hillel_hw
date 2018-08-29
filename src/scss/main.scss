@@ -1,0 +1,137 @@
+@import "./_var.scss";
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  // outline: 1px solid red;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.fl-row-sp-b {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.fl-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.header {
+  height: 68px;
+  cursor: pointer;
+  &-wrapper {
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+  &-wrapper {
+    background-color: $main-darck;
+  }
+  &__logo {
+    align-content: center;
+    align-items: center;
+    &:hover {
+      .logo {
+        transform: rotateX(180deg);
+      }
+      .title-sumbol:nth-child(even) {
+        transform: translateY(-3px);
+      }
+      .title-sumbol:nth-child(odd) {
+        transform: translateY(3px);
+      }
+    }
+  }
+  &__nav {
+    width: 50%;
+  }
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 16px;
+  transition: all .3s;
+  &__title {
+    font-size: 0px;
+    color: $second-light;
+    font-weight: 300;
+    letter-spacing: -3px;
+    padding: 0 3px;
+  }
+}
+
+.title-sumbol {
+  font-size: 32px;
+  display: inline-block;
+  transition: all .4s;
+}
+
+.nav {
+  align-content: center;
+  align-items: center;
+  &__el {
+    flex-grow: 1;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $white;
+    position: relative;
+    cursor: pointer;
+    transition: all .2s;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      width: 0%;
+      background-color: $second-light;
+      transition: all .2s;
+    }
+    &:hover {
+      color: $second-light;
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.main {
+  margin-top: 67px;
+  min-height: calc(100vh - 67px);
+  position: relative;
+  background-image: url('/img/bg.png');
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  mix-blend-mode: lighten;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb( 49, 29, 94);
+    opacity: 0.85;
+    z-index: -1;
+  }
+}
