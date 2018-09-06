@@ -259,3 +259,28 @@ ul {
     transform: rotateX(180deg);
   }
 }
+
+.footer {
+  background-color: $main-darck;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  p {
+    text-align: center;
+    padding: 8px;
+    font-size: 14px;
+    color: $white;
+  }
+}
+
+.clock {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  font-size: 0px;
+  color: $second-light;
+  span {
+    font-size: 14px;
+  }
+}
