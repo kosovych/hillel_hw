@@ -15,6 +15,12 @@ ul {
   list-style-type: none;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .container {
   width: 100%;
   max-width: 940px;
@@ -282,5 +288,67 @@ ul {
   color: $second-light;
   span {
     font-size: 14px;
+  }
+}
+
+.input-component {
+  position: relative;
+  margin-bottom: 18px;
+  &__input {
+    font-size: 16px;
+    padding: 6px 15px;
+    border: none;
+    background-color: transparent;
+    border: 1px solid $second-light;
+    border-radius: 15px;
+    color: $second-light;
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+  &__label {
+    position: absolute;
+    font-size: 16px;
+    color: $second-light;
+    bottom: 6px;
+    left: 15px;
+    pointer-events: none;
+    line-height: 1;
+    transition: all 0.3s;
+  }
+}
+
+.input-component__input:focus+.input-component__label {
+  bottom: calc(100% + 3px);
+  font-size: 10px;
+  font-weight: 300;
+}
+
+.btn {
+  &_submit {
+    border: none;
+    background: none;
+    background-color: transparent;
+    height: 40px;
+    min-width: 120px;
+    border-radius: 25px;
+    border: 1px solid $second-light;
+    font-size: 16px;
+    color: $second-light;
+    padding: 0 25px;
+    transition: all 0.3s;
+    transform: scale(1);
+    &:hover {
+      background-color: $second-light;
+      color: $main-darck;
+    }
+    &:focus,
+    &:active {
+      outline: none;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
   }
 }

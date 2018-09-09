@@ -1,19 +1,19 @@
 module.exports = Clock;
-
+const setDublesumbolVal = require('./setDublesumbolVal.js');
 
 function  Clock() {
   let date = new Date();
   this.hours = date.getHours();
   this.minutes = date.getMinutes();
-  this.seconds = date.getHours();
+  this.seconds = date.getSeconds();
 
   this.$hours = document.getElementById('clock-hour');
   this.$minutes = document.getElementById('clock-minute');
   this.$seconds = document.getElementById('clock-second');
 
-  this.$hours.innerHTML = this.hours;
-  this.$minutes.innerHTML = this.minutes;
-  this.$seconds.innerHTML = this.seconds;
+  this.$hours.innerHTML = setDublesumbolVal(this.hours, this.$hours.innerHTML, 10);
+  this.$minutes.innerHTML = setDublesumbolVal(this.minutes, this.$minutes.innerHTML, 10);
+  this.$seconds.innerHTML = setDublesumbolVal(this.seconds, this.$seconds.innerHTML, 10);
 }
 
 Clock.prototype.log = function () {
@@ -27,11 +27,7 @@ Clock.prototype.incHour = function () {
     this.hours = 0;
   }
 
-  if (this.hours < 10) {
-    this.$hours.innerHTML = `0${this.hours}`;
-  } else {
-    this.$hours.innerHTML = `${this.hours}`;
-  }
+  this.$hours.innerHTML = setDublesumbolVal(this.hours, this.$hours.innerHTML, 10);
 }
 
 Clock.prototype.incMinute = function () {
@@ -42,11 +38,7 @@ Clock.prototype.incMinute = function () {
     this.minutes = 0;
   }
 
-  if (this.minutes < 10) {
-    this.$minutes.innerHTML = `0${this.minutes}`;
-  } else {
-    this.$minutes.innerHTML = `${this.minutes}`;
-  }
+  this.$minutes.innerHTML = setDublesumbolVal(this.minutes, this.$minutes.innerHTML, 10);
 }
 
 Clock.prototype.incSecond = function () {
@@ -57,11 +49,7 @@ Clock.prototype.incSecond = function () {
     this.seconds = 0;
   }
 
-  if (this.seconds < 10) {
-    this.$seconds.innerHTML = `0${this.seconds}`;
-  } else {
-    this.$seconds.innerHTML = `${this.seconds}`;
-  }
+  this.$seconds.innerHTML = setDublesumbolVal(this.seconds, this.$seconds.innerHTML, 10);
 }
 
 Clock.prototype.start = function () {
