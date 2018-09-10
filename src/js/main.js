@@ -1,5 +1,4 @@
 const Clock = require('./clock.js');
-// const Timer = require('./Timer.js');
 const clock = new Clock(document.getElementById('clock-hour'),
                         document.getElementById('clock-minute'),
                         document.getElementById('clock-second'));
@@ -53,3 +52,9 @@ $tableGenerator.addEventListener('submit', function (ev) {
 
 clock.start();
 timer.start();
+
+window.addEventListener('keyup', function(ev) {
+  if(ev.keyCode === 27) {
+    timer.reset();
+  }
+});

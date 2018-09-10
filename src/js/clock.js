@@ -1,10 +1,10 @@
 module.exports = Clock;
 const setDublesumbolVal = require('./setDublesumbolVal.js');
 
-function  Clock($hours, $minutes, $seconds, $container = null, isClock = true) {
+function Clock($hours, $minutes, $seconds, $container = null, isClock = true) {
   let date = new Date();
   this.isClock = isClock;
-  
+
   this.hours = this.isClock ? date.getHours() : 0;
   this.minutes = this.isClock ? date.getMinutes() : 0;
   this.seconds = this.isClock ? date.getSeconds() : 0;
@@ -15,7 +15,7 @@ function  Clock($hours, $minutes, $seconds, $container = null, isClock = true) {
   this.$container = $container;
 
 
-  if(!isClock) {
+  if (!isClock) {
     this.$container.addEventListener('mouseover', Clock.prototype.stop.bind(this));
     this.$container.addEventListener('mouseout', Clock.prototype.start.bind(this));
   }
@@ -40,7 +40,7 @@ Clock.prototype.incHour = function () {
 }
 
 Clock.prototype.incMinute = function () {
-  if(this.minutes < 59) {
+  if (this.minutes < 59) {
     this.minutes = this.minutes + 1;
   } else {
     this.incHour();
@@ -68,7 +68,18 @@ Clock.prototype.start = function () {
 }
 
 Clock.prototype.stop = function () {
-  if(!this.isClock) {
+  if (!this.isClock) {
     clearInterval(this.timerID);
+  }
+}
+
+Clock.prototype.reset = function () {
+  if (!this.isClock) {
+    this.hours = 0;
+    this.minutes = 0;
+    this.seconds = 0;
+    this.$hours.innerHTML = '00';
+    this.$minutes.innerHTML = '00';
+    this.$seconds.innerHTML = '00';
   }
 }
