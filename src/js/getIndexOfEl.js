@@ -8,6 +8,4 @@ function getIndexOfEl(ev) {
 
   console.dir(arrOfTableData);
   alert(`Index of current cell is ${arrOfTableData.indexOf($evTarget)}`);
-
-
 }

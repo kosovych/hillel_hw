@@ -1,6 +1,6 @@
 module.exports = tableGenerator;
 
-function tableGenerator (_rows, _cols) {
+function tableGenerator(_rows, _cols) {
   let rows = parseFloat(_rows);
   let cols = parseFloat(_cols);
 

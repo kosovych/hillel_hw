@@ -6,7 +6,7 @@ function checkInputsHasValue(inputs) {
   inputsArr.forEach((el) => {
     checkInputsHasValueHandler(null, el);
     
-    el.addEventListener('blur', function (ev) {
+    el.addEventListener('blur', function(ev) {
       checkInputsHasValueHandler(ev, null);
     });
     
@@ -25,7 +25,6 @@ function checkInputsHasValueHandler(ev, domEl) {
   }
 
   if(ev === null && domEl !== null) {
-    console.log('----');
     if (domEl.value) {
       domEl.nextElementSibling.classList.add('has-value');
     } else {
