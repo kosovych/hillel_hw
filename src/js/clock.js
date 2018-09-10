@@ -1,15 +1,24 @@
 module.exports = Clock;
 const setDublesumbolVal = require('./setDublesumbolVal.js');
 
-function  Clock() {
+function  Clock($hours, $minutes, $seconds, $container = null, isClock = true) {
   let date = new Date();
-  this.hours = date.getHours();
-  this.minutes = date.getMinutes();
-  this.seconds = date.getSeconds();
+  this.isClock = isClock;
+  
+  this.hours = this.isClock ? date.getHours() : 0;
+  this.minutes = this.isClock ? date.getMinutes() : 0;
+  this.seconds = this.isClock ? date.getSeconds() : 0;
 
-  this.$hours = document.getElementById('clock-hour');
-  this.$minutes = document.getElementById('clock-minute');
-  this.$seconds = document.getElementById('clock-second');
+  this.$hours = $hours;
+  this.$minutes = $minutes;
+  this.$seconds = $seconds;
+  this.$container = $container;
+
+
+  if(!isClock) {
+    this.$container.addEventListener('mouseover', Clock.prototype.stop.bind(this));
+    this.$container.addEventListener('mouseout', Clock.prototype.start.bind(this));
+  }
 
   this.$hours.innerHTML = setDublesumbolVal(this.hours, this.$hours.innerHTML, 10);
   this.$minutes.innerHTML = setDublesumbolVal(this.minutes, this.$minutes.innerHTML, 10);
@@ -53,7 +62,13 @@ Clock.prototype.incSecond = function () {
 }
 
 Clock.prototype.start = function () {
-  let timerID = setInterval(() => {
+  this.timerID = setInterval(() => {
     this.incSecond();
   }, 1000);
+}
+
+Clock.prototype.stop = function () {
+  if(!this.isClock) {
+    clearInterval(this.timerID);
+  }
 }

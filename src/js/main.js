@@ -1,5 +1,15 @@
 const Clock = require('./clock.js');
-const clock = new Clock();
+// const Timer = require('./Timer.js');
+const clock = new Clock(document.getElementById('clock-hour'),
+                        document.getElementById('clock-minute'),
+                        document.getElementById('clock-second'));
+
+const timer = new Clock(document.getElementById('timer-hour'),
+                        document.getElementById('timer-minute'),
+                        document.getElementById('timer-second'),
+                        document.getElementById('timer'),
+                        false);
+
 const tableGenerator = require('./tableGenerator.js');
 const getIndexOfEl = require('./getIndexOfEl.js');
 const checkInputsHasValue = require('./checkInputsHasValue.js');
@@ -42,3 +52,4 @@ $tableGenerator.addEventListener('submit', function (ev) {
 });
 
 clock.start();
+timer.start();
