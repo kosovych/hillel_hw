@@ -1,4 +1,18 @@
 const Clock = require('./clock.js');
+const tableGenerator = require('./tableGenerator.js');
+const getIndexOfEl = require('./getIndexOfEl.js');
+const checkInputsHasValue = require('./checkInputsHasValue.js');
+const windowSizeBadge = require('./windowSizeBadge.js');
+const Tab = require('./Tab.js');
+const Carousel = require('./Carousel');
+
+const $tableGenerator = document.getElementById('table-generator');
+let $inputs = document.getElementsByClassName('input-component__input');
+let $viewportBadge = document.getElementById('viewport-badge');
+let $forms = document.getElementById('table-generator');
+
+//timer & clock
+const tab = new Tab();
 const clock = new Clock(document.getElementById('clock-hour'),
                         document.getElementById('clock-minute'),
                         document.getElementById('clock-second'));
@@ -9,17 +23,16 @@ const timer = new Clock(document.getElementById('timer-hour'),
                         document.getElementById('timer'),
                         false);
 
-const tableGenerator = require('./tableGenerator.js');
-const getIndexOfEl = require('./getIndexOfEl.js');
-const checkInputsHasValue = require('./checkInputsHasValue.js');
-const windowSizeBadge = require('./windowSizeBadge.js');
+clock.start();
+timer.start();
 
-const $tableGenerator = document.getElementById('table-generator');
-let $inputs = document.getElementsByClassName('input-component__input');
-let $viewportBadge = document.getElementById('viewport-badge');
-let $forms = document.getElementById('table-generator');
+window.addEventListener('keyup', function(ev) {
+  if(ev.keyCode === 27) {
+    timer.reset();
+  } else return
+});
 
-
+//Input UI
 $forms.addEventListener('reset', function (ev) {
   setTimeout(() => {
     checkInputsHasValue(document.querySelectorAll(`#${ev.target.id} .input-component__input`));
@@ -34,6 +47,7 @@ windowSizeBadge($viewportBadge);
 
 checkInputsHasValue($inputs);
 
+//table gen
 $tableGenerator.addEventListener('submit', function (ev) {
   ev.preventDefault();
   let table = tableGenerator(document.getElementById('table-rows').value, document.getElementById('table-cols').value);
@@ -50,11 +64,6 @@ $tableGenerator.addEventListener('submit', function (ev) {
   });
 });
 
-clock.start();
-timer.start();
+//carousel
 
-window.addEventListener('keyup', function(ev) {
-  if(ev.keyCode === 27) {
-    timer.reset();
-  }
-});
+const carousel = Carousel('.carousel');

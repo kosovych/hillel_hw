@@ -45,16 +45,12 @@
     </div>
   </header>
 
-  <main class="main">
+  <main class="main-container">
     <input type="checkbox" name="qwerty" id="qwerty">
     <aside class="menu">
-      <ul class="menu-list">
-        <li class="menu-list__el">Item Item</li>
-        <li class="menu-list__el">Item Item</li>
-        <li class="menu-list__el">Item Item</li>
-        <li class="menu-list__el">Item Item</li>
-        <li class="menu-list__el">Item Item</li>
-        <li class="menu-list__el">Item Item</li>
+      <ul class="menu-list tabs">
+        <li class="menu-list__el tab-el" data-tab-name="table-gen">Table generator</li>
+        <li class="menu-list__el tab-el" data-tab="selected" data-tab-name="carousel">Carousel</li>
       </ul>
       <label for="qwerty" class="menu-btn">
         <span></span>
@@ -62,19 +58,35 @@
         <span></span>
       </label>
     </aside>
-    <section id="table-container" class="content">
-      <form id="table-generator" action="/">
-        <div class="input-component">
-          <input class="input-component__input" id="table-rows" type="number">
-          <label class="input-component__label" for="table-col">Number of rows</label>
+    <div class="main tab" data-tab-content="table-gen">
+      <section id="table-container" class="content">
+        <form id="table-generator" action="/">
+          <div class="input-component">
+            <input class="input-component__input" id="table-rows" type="number">
+            <label class="input-component__label" for="table-col">Number of rows</label>
+          </div>
+          <div class="input-component">
+            <input class="input-component__input" id="table-cols" type="number">
+            <label class="input-component__label" for="table-col">Number of column</label>
+          </div>
+          <input class="btn_submit" type="submit" value="Generate table">
+        </form>
+      </section>
+    </div>
+    <div class="tab content" data-tab-content="carousel">
+
+      <div class="cats carousel">
+        <div class="carousel-wrapper">
+          <div class="carousel-slides">
+            <div class="carousel-img"><img src="/img/1.jpg" alt="Cat"></div>
+            <div class="carousel-img"><img src="/img/2.jpg" alt="Cat"></div>
+            <div class="carousel-img"><img src="/img/3.jpg" alt="Cat"></div>
+            <div class="carousel-img"><img src="/img/4.jpg" alt="Cat"></div>
+          </div>
         </div>
-        <div class="input-component">
-          <input class="input-component__input" id="table-cols" type="number">
-          <label class="input-component__label" for="table-col">Number of column</label>
-        </div>
-        <input class="btn_submit" type="submit" value="Generate table">
-      </form>
-    </section>
+      </div>
+
+    </div>
   </main>
 
   <footer class="footer">

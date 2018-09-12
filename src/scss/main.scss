@@ -1,8 +1,9 @@
 @import "./_var.scss";
+
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box; // outline: 1px solid red;
+  box-sizing: border-box;
 }
 
 body {
@@ -41,30 +42,37 @@ input[type=number]::-webkit-outer-spin-button {
 .header {
   height: 68px;
   cursor: pointer;
+
   &-wrapper {
     position: fixed;
     z-index: 5;
     top: 0;
     width: 100%;
   }
+
   &-wrapper {
     background-color: $main-darck;
   }
+
   &__logo {
     align-content: center;
     align-items: center;
+
     &:hover {
       .logo {
         transform: rotateX(180deg);
       }
+
       .title-sumbol:nth-child(odd) {
         transform: translateY(-3px);
       }
+
       .title-sumbol:nth-child(even) {
         transform: translateY(3px);
       }
     }
   }
+
   &__nav {
     width: 50%;
   }
@@ -75,6 +83,7 @@ input[type=number]::-webkit-outer-spin-button {
   height: 50px;
   margin-right: 16px;
   transition: all .3s;
+
   &__title {
     font-size: 0px;
     color: $second-light;
@@ -93,6 +102,7 @@ input[type=number]::-webkit-outer-spin-button {
 .nav {
   align-content: center;
   align-items: center;
+
   &__el {
     flex-grow: 1;
     text-align: center;
@@ -104,6 +114,7 @@ input[type=number]::-webkit-outer-spin-button {
     position: relative;
     cursor: pointer;
     transition: all .2s;
+
     &::after {
       content: "";
       position: absolute;
@@ -115,8 +126,10 @@ input[type=number]::-webkit-outer-spin-button {
       background-color: $second-light;
       transition: all .2s;
     }
+
     &:hover {
       color: $second-light;
+
       &::after {
         width: 100%;
       }
@@ -125,27 +138,34 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .main {
-  margin-top: 67px;
-  min-height: calc(100vh - 67px);
-  position: relative;
-  background-image: url('/img/bg.png');
-  background-repeat: no-repeat;
-  background-position: bottom;
-  background-attachment: fixed;
-  background-size: contain;
-  mix-blend-mode: lighten;
-  display: flex;
-  padding: 24px;
-  align-items: flex-start;
-  &::after {
-    content: "";
-    background-color: rgba( 49, 29, 94, .85);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+  width: 100%;
+
+  &-container {
+    padding: 24px;
+    min-height: 100vh;
+    background-image: url('/img/bg.png');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    mix-blend-mode: lighten;
+    display: flex;
+    background-attachment: fixed;
+    background-size: contain;
+    position: relative;
+    margin-top: 67px;
+    min-height: calc(100vh - 67px);
+    align-items: flex-start;
+
+
+    &::after {
+      content: "";
+      background-color: rgba(49, 29, 94, .85);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
   }
 }
 
@@ -157,11 +177,14 @@ input[type=number]::-webkit-outer-spin-button {
   position: relative;
   overflow-x: hidden;
   transition: margin-left .4s, border-color .4s;
+
   &-list {
     margin: 16px;
+    margin-top: 32px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+
     &__el {
       margin-bottom: 16px;
       letter-spacing: 0px;
@@ -170,9 +193,11 @@ input[type=number]::-webkit-outer-spin-button {
       will-change: letter-spacing;
       cursor: pointer;
       font-size: 18px;
+
       &:hover {
-        letter-spacing: 3px;
+        letter-spacing: 1px;
       }
+
       &::after {
         content: "";
         width: 12px;
@@ -185,12 +210,22 @@ input[type=number]::-webkit-outer-spin-button {
         background-size: cover;
         will-change: transform;
       }
+
       &:hover::after {
         display: block;
         animation: rotate .6s linear infinite;
       }
+
+      &[data-tab="selected"]:after {
+        display: block;
+      }
+
+      &[data-tab="selected"] {
+        letter-spacing: 1px;
+      }
     }
   }
+
   &-btn {
     width: 26px;
     height: 26px;
@@ -199,6 +234,7 @@ input[type=number]::-webkit-outer-spin-button {
     right: 0px;
     border: 1px solid $second-light;
     background: none;
+
     span {
       position: absolute;
       width: 18px;
@@ -206,15 +242,18 @@ input[type=number]::-webkit-outer-spin-button {
       background-color: $second-light;
       transition: all .3s;
       left: 3px;
+
       &:nth-child(1) {
         top: 11px;
         transform: rotate(-45deg);
       }
+
       &:nth-child(2) {
         top: 11px;
         opacity: 0;
         transition: all .3s;
       }
+
       &:nth-child(3) {
         top: 11px;
         transform: rotate(45deg);
@@ -234,7 +273,12 @@ input[type=number]::-webkit-outer-spin-button {
   &+.menu {
     margin-left: -196px;
     border-color: transparent;
+
+    .menu-list__el[data-tab="selected"]::after {
+      display: none;
+    }
   }
+
 }
 
 #qwerty:checked+.menu .menu-btn {
@@ -243,9 +287,11 @@ input[type=number]::-webkit-outer-spin-button {
       top: 5px;
       transform: rotate(0deg);
     }
+
     &:nth-child(2) {
       opacity: 1;
     }
+
     &:nth-child(3) {
       top: 17px;
       transform: rotate(0deg);
@@ -261,6 +307,7 @@ input[type=number]::-webkit-outer-spin-button {
   from {
     transform: rotateX(0deg);
   }
+
   to {
     transform: rotateX(180deg);
   }
@@ -272,6 +319,7 @@ input[type=number]::-webkit-outer-spin-button {
   bottom: 0;
   right: 0;
   width: 100%;
+
   p {
     text-align: center;
     padding: 8px;
@@ -280,20 +328,10 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
-.clock {
-  position: fixed;
-  right: 8px;
-  bottom: 8px;
-  font-size: 0px;
-  color: $second-light;
-  span {
-    font-size: 14px;
-  }
-}
-
 .input-component {
   position: relative;
   margin-bottom: 18px;
+
   &__input {
     font-size: 16px;
     padding: 6px 15px;
@@ -302,11 +340,13 @@ input[type=number]::-webkit-outer-spin-button {
     border: 1px solid $second-light;
     border-radius: 15px;
     color: $second-light;
+
     &:focus,
     &:active {
       outline: none;
     }
   }
+
   &__label {
     position: absolute;
     font-size: 16px;
@@ -319,7 +359,7 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
-.input-component__input:focus + .input-component__label {
+.input-component__input:focus+.input-component__label {
   bottom: calc(100% + 3px);
   font-size: 10px;
   font-weight: 300;
@@ -345,33 +385,41 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 0 25px;
     transition: all 0.3s;
     transform: scale(1);
+
     &:hover {
       background-color: $second-light;
       color: $main-darck;
     }
+
     &:focus,
     &:active {
       outline: none;
     }
+
     &:active {
       transform: scale(0.95);
     }
   }
 }
 
+////// table //////
+
 .table {
   margin-top: 24px;
   width: 100%;
   border-collapse: collapse;
+
   &__td {
     border: 1px solid $second-light;
     padding: 12px;
+
     &:hover {
       background-color: rgba($color: $second-light, $alpha: .1);
     }
   }
 }
 
+////// viewport-badge //////
 .viewport-badge {
   position: fixed;
   right: 16px;
@@ -387,7 +435,93 @@ input[type=number]::-webkit-outer-spin-button {
   transition: all 0.5s;
 }
 
+////// CLOCK //////
+
+.clock {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  font-size: 0px;
+  color: $second-light;
+
+  span {
+    font-size: 14px;
+  }
+}
+
+////// TIMER //////
 .timer {
   @extend .clock;
   left: 8px;
+}
+
+////// TAB //////
+
+.tab {
+  display: none;
+}
+
+////// CAROUSEL //////
+
+.carousel {
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+
+  &-wrapper {
+    font-size: 0;
+    margin: 0 auto;
+
+    overflow: hidden;
+
+  }
+
+  &-slides {
+    // width: 2000px;
+  }
+
+  &-btn {
+    position: absolute;
+    top: calc(50% - 15px);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: none;
+    border-left: 1px solid $second-light;
+    border-bottom: 1px solid $second-light;
+    transition: all 0.3s;
+    &:focus, &:active {
+      outline: none;
+    }
+
+    &.left {
+      left: 8px;
+      right: auto;
+      transform: rotate(45deg) scale(0.9);
+
+      &:hover {
+        transform: rotate(45deg) scale(1.1);
+      }
+    }
+
+    &.right {
+      left: auto;
+      right: 8px;
+      transform: rotate(-135deg) scale(0.9);
+
+      &:hover {
+        transform: rotate(-135deg) scale(1.1);
+      }
+    }
+  }
+
+
+
+  &-img {
+    display: inline-block;
+
+    img {
+      width: 100%;
+    }
+  }
 }
