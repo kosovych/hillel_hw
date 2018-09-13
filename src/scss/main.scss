@@ -478,6 +478,9 @@ input[type=number]::-webkit-outer-spin-button {
 
   &-slides {
     // width: 2000px;
+    position: relative;
+    left: 0;
+    transition: left 0.3s;
   }
 
   &-btn {
@@ -494,7 +497,7 @@ input[type=number]::-webkit-outer-spin-button {
       outline: none;
     }
 
-    &.left {
+    &.prev {
       left: 8px;
       right: auto;
       transform: rotate(45deg) scale(0.9);
@@ -504,7 +507,7 @@ input[type=number]::-webkit-outer-spin-button {
       }
     }
 
-    &.right {
+    &.next {
       left: auto;
       right: 8px;
       transform: rotate(-135deg) scale(0.9);

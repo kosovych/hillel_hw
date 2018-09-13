@@ -64,6 +64,5 @@ $tableGenerator.addEventListener('submit', function (ev) {
   });
 });
 
-//carousel
 
 const carousel = Carousel('.carousel');
