@@ -24,7 +24,7 @@ let cashbox = {
     }
     
     let change = {
-      moneyInCashbox: [
+      moneyInChange: [
         {
           noteNominal: 100,
           noteAmount: 0
@@ -62,7 +62,7 @@ let cashbox = {
       }
 
       monyForChange -= note * this.moneyInCashbox[i].noteNominal;
-      change.moneyInCashbox[i].noteAmount = note;
+      change.moneyInChange[i].noteAmount = note;
       this.moneyInCashbox[i].noteAmount -= note;
 
       if (monyForChange === 0) {
@@ -70,8 +70,8 @@ let cashbox = {
       }
     }
     
-    for(let i = 0; i < change.moneyInCashbox.length; i++) {
-      change.total += change.moneyInCashbox[i].noteNominal * change.moneyInCashbox[i].noteAmount;
+    for (let i = 0; i < change.moneyInChange.length; i++) {
+      change.total += change.moneyInChange[i].noteNominal * change.moneyInChange[i].noteAmount;
     }
     console.log('change ===>', change);
     console.log('cashbox ===>', this);
@@ -79,3 +79,6 @@ let cashbox = {
 }
 
 cashbox.giveChange(1000, 1);
+// cashbox.giveChange(1000, 1);
+// cashbox.giveChange(1000, 1);
+// cashbox.giveChange(1000, 1);
