@@ -6,10 +6,15 @@ function Carousel($container) {
 
 function CarouselConstructor($container) {
   this.$container = document.querySelector($container);
+  this.$container.carouselObj = this;
+
   this.$carouselWrapper = this.$container.firstElementChild;
   this.$carouselWrapper.firstElementChild.append(this.$carouselWrapper.firstElementChild.children[0].cloneNode(true));
 
-  this.$carouselWrapper.firstElementChild.insertBefore(this.$carouselWrapper.firstElementChild.children[this.$carouselWrapper.firstElementChild.children.length - 2].cloneNode(true), this.$carouselWrapper.firstElementChild.children[0]);
+  this.$carouselWrapper
+    .firstElementChild
+    .insertBefore(this.$carouselWrapper.firstElementChild.children[this.$carouselWrapper.firstElementChild.children.length - 2].cloneNode(true),
+    this.$carouselWrapper.firstElementChild.children[0]);
 
   this.$slidesWrapper = this.$carouselWrapper.firstElementChild;
   this.$slides = Array.from(this.$slidesWrapper.children);
@@ -31,14 +36,30 @@ function CarouselConstructor($container) {
   setTimeout(() => {
     this.$slidesWrapper.style.transition = 'left 0.3s';
   }, 0);
+
   this.$slidesWrapper.style.width = `${slidesW}px`;
 
-  append('button', 'carousel-btn prev', this.$container).addEventListener('click', function (ev) {
+  this.$prevSlideBtn = append('button', 'carousel-btn prev', this.$container);
+  this.$prevSlideBtn.addEventListener('click', function prevSlideHandler (ev) {
+    ev.target.removeEventListener('click', prevSlideHandler);
     self.prevSlide(ev, self);
+    self.$slidesWrapper.addEventListener('transitionend', function transitionendHandler(ev){
+      ev.target.removeEventListener('transitionend', transitionendHandler);
+      self.$prevSlideBtn.addEventListener('click', prevSlideHandler);
+    });
   });
-  append('button', 'carousel-btn next', this.$container).addEventListener('click', function (ev) {
+  this.$nextSlideBtn = append('button', 'carousel-btn next', this.$container);
+  this.$nextSlideBtn.addEventListener('click', function nextSlideHandler (ev) {
+    ev.target.removeEventListener('click', nextSlideHandler);
     self.nextSlide(ev, self);
+    self.$slidesWrapper.addEventListener('transitionend', function transitionendHandler(ev){
+      ev.target.removeEventListener('transitionend', transitionendHandler);
+      self.$nextSlideBtn.addEventListener('click', nextSlideHandler);
+    });
   });
+
+  console.dir(this.$prevSlideBtn);
+  console.dir(this.$nextSlideBtn);
 }
 
 function append(el, $class, $append) {
@@ -49,6 +70,8 @@ function append(el, $class, $append) {
 }
 
 CarouselConstructor.prototype.nextSlide = function (ev, $this) {
+
+
   $this.curentSlide += 1;
 
   if (!$this.$slides[$this.curentSlide + 1]) {
