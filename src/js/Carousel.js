@@ -22,7 +22,6 @@ function CarouselConstructor($container) {
   this.$carouselWrapper.style = `max-width: ${(this.$container.offsetWidth - 40)}px`;
 
   this.slidesWidth = this.$slides.map(el => el.offsetWidth);
-  console.log(this.slidesWidth);
 
   let self = this;
   let slidesW = 0;
@@ -40,6 +39,7 @@ function CarouselConstructor($container) {
   this.$slidesWrapper.style.width = `${slidesW}px`;
 
   this.$prevSlideBtn = append('button', 'carousel-btn prev', this.$container);
+
   this.$prevSlideBtn.addEventListener('click', function prevSlideHandler (ev) {
     ev.target.removeEventListener('click', prevSlideHandler);
     self.prevSlide(ev, self);
@@ -48,7 +48,9 @@ function CarouselConstructor($container) {
       self.$prevSlideBtn.addEventListener('click', prevSlideHandler);
     });
   });
+
   this.$nextSlideBtn = append('button', 'carousel-btn next', this.$container);
+
   this.$nextSlideBtn.addEventListener('click', function nextSlideHandler (ev) {
     ev.target.removeEventListener('click', nextSlideHandler);
     self.nextSlide(ev, self);
@@ -57,9 +59,6 @@ function CarouselConstructor($container) {
       self.$nextSlideBtn.addEventListener('click', nextSlideHandler);
     });
   });
-
-  console.dir(this.$prevSlideBtn);
-  console.dir(this.$nextSlideBtn);
 }
 
 function append(el, $class, $append) {
@@ -70,8 +69,6 @@ function append(el, $class, $append) {
 }
 
 CarouselConstructor.prototype.nextSlide = function (ev, $this) {
-
-
   $this.curentSlide += 1;
 
   if (!$this.$slides[$this.curentSlide + 1]) {
@@ -87,7 +84,6 @@ CarouselConstructor.prototype.nextSlide = function (ev, $this) {
   }
 
   let shift = $this.$slides[$this.curentSlide].offsetWidth;
-  console.log(shift);
 
   $this.$slidesWrapper.style.left = $this.$slidesWrapper.style.left === "" ?
     `${-shift}px` :
@@ -111,7 +107,6 @@ CarouselConstructor.prototype.prevSlide = function (ev, $this) {
   }
 
   let shift = $this.$slides[$this.curentSlide].offsetWidth;
-  console.log(shift);
 
   $this.$slidesWrapper.style.left = $this.$slidesWrapper.style.left === "" ?
     `${shift}px` :
