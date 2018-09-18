@@ -1,10 +1,11 @@
 module.exports = Carousel;
 
-function Carousel($container) {
-  return new CarouselConstructor($container);
+function Carousel($container, options) {
+  return new CarouselConstructor($container, options);
 }
 
-function CarouselConstructor($container) {
+function CarouselConstructor($container, options) {
+  this.options = options;
   this.$container = document.querySelector($container);
   this.$container.carouselObj = this;
 
@@ -21,14 +22,12 @@ function CarouselConstructor($container) {
   this.curentSlide = 1;
   this.$carouselWrapper.style = `max-width: ${(this.$container.offsetWidth - 40)}px`;
 
-  this.slidesWidth = this.$slides.map(el => el.offsetWidth);
-
   let self = this;
-  let slidesW = 0;
+  this.slideWidth = this.$carouselWrapper.offsetWidth * this.$slides.length;
+  this.slidesWidth = this.$slides.map(el => el.offsetWidth);
 
   this.$slides.map(el => {
     el.style.width = `${this.$slidesWrapper.offsetWidth}px`;
-    slidesW += el.offsetWidth;
   });
 
   replaceSlider(null, 'start', this);
@@ -36,7 +35,7 @@ function CarouselConstructor($container) {
     this.$slidesWrapper.style.transition = 'left 0.3s';
   }, 0);
 
-  this.$slidesWrapper.style.width = `${slidesW}px`;
+  this.$slidesWrapper.style.width = `${this.slideWidth}px`;
 
   this.$prevSlideBtn = append('button', 'carousel-btn prev', this.$container);
 
@@ -59,6 +58,10 @@ function CarouselConstructor($container) {
       self.$nextSlideBtn.addEventListener('click', nextSlideHandler);
     });
   });
+
+  // Options Description
+
+  this.autoPlayMethod();
 }
 
 function append(el, $class, $append) {
@@ -73,12 +76,12 @@ CarouselConstructor.prototype.nextSlide = function (ev, $this) {
 
   if (!$this.$slides[$this.curentSlide + 1]) {
     $this.curentSlide = 1;
-    this.$slidesWrapper.addEventListener('transitionend', function as(ev, self) {
-      ev.target.style.transition = 'none';
+    $this.$slidesWrapper.addEventListener('transitionend', function as(ev, self) {
+      $this.$slidesWrapper.style.transition = 'none';
       replaceSlider(ev, 'start', $this);
-      ev.target.removeEventListener('transitionend', as);
+      $this.$slidesWrapper.removeEventListener('transitionend', as);
       setTimeout(() => {
-        ev.target.style.transition = ' left 0.3s'
+        $this.$slidesWrapper.style.transition = ' left 0.3s'
       }, 0);
     });
   }
@@ -117,7 +120,7 @@ CarouselConstructor.prototype.prevSlide = function (ev, $this) {
 
 function replaceSlider(ev, controller, context) {
   if (controller === 'start') {
-    context.$slidesWrapper.style.left = `-${context.slidesWidth[0]}px`;
+    context.$slidesWrapper.style.left = `-${context.slideWidth / context.$slides.length}px`;
   }
 
   if (controller === 'end') {
@@ -125,4 +128,23 @@ function replaceSlider(ev, controller, context) {
       .slidesWidth.slice(0, context.slidesWidth.length - 2)
       .reduce((accumulator, currentValue) => accumulator + currentValue) + 'px';
   }
+}
+
+CarouselConstructor.prototype.autoPlayMethod = function() {
+  if (!this.options.autoPlay) {
+    return
+  }
+
+  if (this.setIntervalId) {
+    clearInterval(this.setIntervalId);
+  }
+
+  let self = this;
+
+  this.setIntervalId = setInterval(this.nextSlide, 1500, null, this);
+  
+  this.$slidesWrapper.addEventListener('mouseover', function mouseOverAutoplayHandler(ev) {
+    clearInterval(self.setIntervalId);
+    ev.target.addEventListener('mouseout', () => self.autoPlayMethod());
+  });
 }
