@@ -66,8 +66,9 @@ $tableGenerator.addEventListener('submit', function (ev) {
 
 
 const carousel = Carousel('.carousel', {
-  autoPlay: true,
+  autoPlay: false,
+  dots: true
 });
 const carousel2 = Carousel('.another-cats', {
-  autoPlay: false,
+  autoPlay: true
 });

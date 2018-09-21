@@ -472,7 +472,7 @@ input[type=number]::-webkit-outer-spin-button {
   &-wrapper {
     font-size: 0;
     margin: 0 auto;
-
+    position: relative;
     overflow: hidden;
 
   }
@@ -526,6 +526,31 @@ input[type=number]::-webkit-outer-spin-button {
 
     img {
       width: 100%;
+    }
+  }
+}
+
+.dots {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  bottom: 12px;
+  display: flex;
+  justify-content: center;
+
+
+  &__el {
+    height: 4px;
+    width: 18px;
+    background-color: transparent;
+    border: 1px solid $second-light;
+    transition: background-color .6s;
+    cursor: pointer;
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+    &.active {
+      background-color: $second-light;
     }
   }
 }
