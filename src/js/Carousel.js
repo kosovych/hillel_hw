@@ -61,13 +61,16 @@ function CarouselConstructor($container, options) {
   });
   
   // Options Description
-  
   if (this.options.autoPlay) {
     this.autoPlayMethod();
   }
   
   if(this.options.dots) {
     this.dotsInit();
+  }
+  
+  if(this.options.title) {
+    console.log(this.titleInit('init'));
   }
   
   Object.defineProperty(this, '_curentSlide', {
@@ -93,7 +96,6 @@ function append(el, $class, $append) {
 
 CarouselConstructor.prototype.nextSlide = function (ev, $this) {
   if($this.$slides[$this._curentSlide + 1]) {
-    console.log(`-----`);
     $this._curentSlide = $this._curentSlide + 1;
   }
   
@@ -176,13 +178,13 @@ CarouselConstructor.prototype.dotsInit = function() {
   }
   
   this.dots = Array.from(dotsContainer.children);
-    dotsContainer.addEventListener('click', (ev) => {
-      if (ev.target.tagName.toLowerCase() !== "i") {
-        return
-      }
-      moveToSlide(this, this.dots.indexOf(ev.target));
-  
-    });
+  dotsContainer.addEventListener('click', (ev) => {
+    if (ev.target.tagName.toLowerCase() !== "i") {
+      return
+    }
+    moveToSlide(this, this.dots.indexOf(ev.target));
+    
+  });
   this.$carouselWrapper.appendChild(dotsContainer);
   this.updateDot('add', this.curentSlide);
 };
@@ -191,7 +193,7 @@ CarouselConstructor.prototype.updateDot = function(mod, dotIndex) {
   if(!this.options.dots) {
     return
   }
-
+  
   if(mod === 'rm' && this.dots[dotIndex - 1]) {
     this.dots[dotIndex - 1].classList.remove('active');
   }
@@ -200,6 +202,22 @@ CarouselConstructor.prototype.updateDot = function(mod, dotIndex) {
     this.dots[dotIndex - 1].classList.add('active');
   }
 }
+
+CarouselConstructor.prototype.titleInit = function (mod) {
+  let $title = document.createElement('div');
+  $title.classList.add('slide-title');
+  this.$carouselWrapper.appendChild($title);
+  this.$title = $title;
+  this.$carouselWrapper.addEventListener('mouseover', () => {
+    this.$title.innerText = this.$slides[this.curentSlide].dataset.slideTitle;
+    this.$title.style.opacity = 1;
+  });
+
+  this.$carouselWrapper.addEventListener('mouseout', () => {
+    this.$title.style.opacity = 0;
+  });
+}
+
 
 function moveToSlide(context, toSlide) {
   context.$slidesWrapper.style.left = `-${(context.slideWidth / context.$slides.length) * toSlide + (context.slideWidth / context.$slides.length)}px`;
