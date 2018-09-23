@@ -5,6 +5,8 @@ const checkInputsHasValue = require('./checkInputsHasValue.js');
 const windowSizeBadge = require('./windowSizeBadge.js');
 const Tab = require('./Tab.js');
 const Carousel = require('./Carousel');
+const getParseJSON = require('./getParseJSON');
+const generStudentTable = require('./GenerStudentTable');
 
 const $tableGenerator = document.getElementById('table-generator');
 let $inputs = document.getElementsByClassName('input-component__input');
@@ -73,3 +75,7 @@ const carousel = Carousel('.carousel', {
 const carousel2 = Carousel('.another-cats', {
   autoPlay: true
 });
+
+//Student Table
+
+let students  = getParseJSON('get-students-btn', '/database/students.json');

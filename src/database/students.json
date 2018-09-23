@@ -1,0 +1,23 @@
+[
+  {
+    "name": "John",
+    "lastName": "Doe",
+    "yearOfAdmission": "2014",
+    "yearOfGraduation": "2018",
+    "Description": "Good Boy"
+  },
+  {
+    "name": "Sara",
+    "lastName": "Denvers",
+    "yearOfAdmission": "2010",
+    "yearOfGraduation": "2015",
+    "Description": "Good Girl"
+  },
+  {
+    "name": "Rimus",
+    "lastName": "Uncle",
+    "yearOfAdmission": "1810",
+    "yearOfGraduation": "1814",
+    "Description": "To old uncle"
+  }
+]
