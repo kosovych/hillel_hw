@@ -49,8 +49,8 @@
     <aside class="menu">
       <ul class="menu-list tabs">
         <li class="menu-list__el tab-el" data-tab-name="table-gen">Table generator</li>
-        <li class="menu-list__el tab-el" data-tab-name="carousel">Carousel</li>
-        <li class="menu-list__el tab-el" data-tab="selected" data-tab-name="dinamic-table">Dinamic Table</li>
+        <li class="menu-list__el tab-el" data-tab="selected" data-tab-name="carousel">Carousel</li>
+        <li class="menu-list__el tab-el" data-tab-name="dinamic-table">Dinamic Table</li>
       </ul>
       <label for="qwerty" class="menu-btn">
         <span></span>
@@ -96,9 +96,6 @@
           </div>
         </div>
       </div>
-      
-      
-      
     </div>
 
     <div class="tab dinamic-table content" data-tab-content="dinamic-table">
@@ -113,18 +110,18 @@
           <label class="input-component__label" for="lastName">Last Name</label>
         </div>
         <div class="input-component">
-          <input id="yearOfAdmission" class="input-component__input" name="yearOfAdmission" required id="table-cols" type="text">
+          <input id="yearOfAdmission" class="input-component__input" name="yearOfAdmission" required id="table-cols" type="number"  maxlength="4">
           <label class="input-component__label" for="yearOfAdmission">Year of Admission</label>
         </div>
         <div class="input-component">
-          <input id="yearOfGraduation" class="input-component__input" name="yearOfGraduation" required id="table-cols" type="text">
+          <input id="yearOfGraduation" class="input-component__input" name="yearOfGraduation" required id="table-cols" type="number"  maxlength="4">
           <label class="input-component__label" for="yearOfGraduation">Year of Graduation</label>
         </div>
         <div class="input-component">
           <input id="description" class="input-component__input" name="description" id="table-cols" type="text">
           <label class="input-component__label" for="description">Description</label>
         </div>
-        <input class="btn_submit" type="submit" value="Generate table">
+        <input class="btn_submit" type="submit" value="Save to table">
       </form>
       <table class="table" id="students-table">
         <thead>

@@ -518,8 +518,8 @@ input[type=number]::-webkit-outer-spin-button {
   font-size: 18px;
   transform: scale(1);
   transition: transform .2s;
-
-   &:hover  {
+  
+  &:hover  {
     transform: scale(1.1);
   }  
   &:active {
@@ -542,8 +542,23 @@ input[type=number]::-webkit-outer-spin-button {
   flex-wrap: wrap;
   justify-content: flex-start;
   margin-top: 24px;
-
+  
   .input-component {
     width: 50%;
   }
+}
+
+tr.on-edit {
+  outline: 1px solid red;
+}
+
+.event-none {
+  pointer-events: none !important;
+  & * {
+    pointer-events: none !important;
+  }
+}
+
+.op-0 {
+  opacity: 0 !important;
 }

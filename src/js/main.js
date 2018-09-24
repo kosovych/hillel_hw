@@ -19,20 +19,20 @@ let $formsStudent = document.getElementById('student-table');
 //timer & clock
 const tab = new Tab();
 const clock = new Clock(document.getElementById('clock-hour'),
-                        document.getElementById('clock-minute'),
-                        document.getElementById('clock-second'));
+  document.getElementById('clock-minute'),
+  document.getElementById('clock-second'));
 
 const timer = new Clock(document.getElementById('timer-hour'),
-                        document.getElementById('timer-minute'),
-                        document.getElementById('timer-second'),
-                        document.getElementById('timer'),
-                        false);
+  document.getElementById('timer-minute'),
+  document.getElementById('timer-second'),
+  document.getElementById('timer'),
+  false);
 
 clock.start();
 timer.start();
 
-window.addEventListener('keyup', function(ev) {
-  if(ev.keyCode === 27) {
+window.addEventListener('keyup', function (ev) {
+  if (ev.keyCode === 27) {
     timer.reset();
   } else return
 });
@@ -87,7 +87,8 @@ const carousel2 = Carousel('.another-cats', {
 
 //Student Table
 
-let students  = getParseJSON('get-students-btn', '/database/students.json');
+let students = getParseJSON('get-students-btn', '/database/students.json');
 
+document.getElementById('student-table').addEventListener('submit', (ev) => ev.preventDefault());
 document.getElementById('student-table').addEventListener('submit', studentsAddEventHandler);
 document.querySelector('#students-table tbody').addEventListener('click', editStudentsHandler);
