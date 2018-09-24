@@ -19,7 +19,6 @@ function getStudentsJSON(ev, url, cd) {
   if(xhr.status != 200) {
     console.log(`${xhr.status}:${xhr.statusText}`);
   } else {
-    cd(JSON.parse(xhr.response), document.querySelector('#students-table tbody'));
+    cd(JSON.parse(xhr.responseText), document.querySelector('#students-table tbody'));
   }
 }
-

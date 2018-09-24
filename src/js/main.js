@@ -7,11 +7,14 @@ const Tab = require('./Tab.js');
 const Carousel = require('./Carousel');
 const getParseJSON = require('./getParseJSON');
 const generStudentTable = require('./GenerStudentTable');
+const studentsAddEventHandler = require('./studentsAddEventHandler.js');
+const editStudentsHandler = require('./editStudentsHandler.js');
 
 const $tableGenerator = document.getElementById('table-generator');
 let $inputs = document.getElementsByClassName('input-component__input');
 let $viewportBadge = document.getElementById('viewport-badge');
 let $forms = document.getElementById('table-generator');
+let $formsStudent = document.getElementById('student-table');
 
 //timer & clock
 const tab = new Tab();
@@ -36,6 +39,12 @@ window.addEventListener('keyup', function(ev) {
 
 //Input UI
 $forms.addEventListener('reset', function (ev) {
+  setTimeout(() => {
+    checkInputsHasValue(document.querySelectorAll(`#${ev.target.id} .input-component__input`));
+  }, 0);
+}, 'passive');
+
+$formsStudent.addEventListener('reset', function (ev) {
   setTimeout(() => {
     checkInputsHasValue(document.querySelectorAll(`#${ev.target.id} .input-component__input`));
   }, 0);
@@ -79,3 +88,6 @@ const carousel2 = Carousel('.another-cats', {
 //Student Table
 
 let students  = getParseJSON('get-students-btn', '/database/students.json');
+
+document.getElementById('student-table').addEventListener('submit', studentsAddEventHandler);
+document.querySelector('#students-table tbody').addEventListener('click', editStudentsHandler);

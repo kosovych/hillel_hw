@@ -4,20 +4,20 @@
     "lastName": "Doe",
     "yearOfAdmission": "2014",
     "yearOfGraduation": "2018",
-    "Description": "Good Boy"
+    "description": "Good Boy"
   },
   {
     "name": "Sara",
     "lastName": "Denvers",
     "yearOfAdmission": "2010",
     "yearOfGraduation": "2015",
-    "Description": "Good Girl"
+    "description": "Good Girl"
   },
   {
     "name": "Rimus",
     "lastName": "Uncle",
     "yearOfAdmission": "1810",
     "yearOfGraduation": "1814",
-    "Description": "To old uncle"
+    "description": "To old uncle"
   }
 ]

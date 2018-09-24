@@ -8,14 +8,13 @@
   <title>Document</title>
   <link rel="stylesheet" href="/css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   
 </head>
 
 <body>
   
-  <div id="viewport-badge" class="viewport-badge">
-    
-  </div>
+  <div id="viewport-badge" class="viewport-badge"></div>
   
   <header class="header-wrapper">
     <div class="header container fl-row-sp-b">
@@ -50,8 +49,8 @@
     <aside class="menu">
       <ul class="menu-list tabs">
         <li class="menu-list__el tab-el" data-tab-name="table-gen">Table generator</li>
-        <li class="menu-list__el tab-el" data-tab="selected" data-tab-name="carousel">Carousel</li>
-        <li class="menu-list__el tab-el" data-tab="dinamic-table" data-tab-name="dinamic-table">Dinamic Table</li>
+        <li class="menu-list__el tab-el" data-tab-name="carousel">Carousel</li>
+        <li class="menu-list__el tab-el" data-tab="selected" data-tab-name="dinamic-table">Dinamic Table</li>
       </ul>
       <label for="qwerty" class="menu-btn">
         <span></span>
@@ -104,6 +103,29 @@
 
     <div class="tab dinamic-table content" data-tab-content="dinamic-table">
       <button class="btn_submit" id="get-students-btn">Get students</button>
+      <form id="student-table" class="student-table" method="POST" action="/">
+        <div class="input-component">
+          <input id="name" class="input-component__input" name="name" required id="table-rows" type="text">
+          <label class="input-component__label" for="name">Name</label>
+        </div>
+        <div class="input-component">
+          <input id="lastName" class="input-component__input" name="lastName" required id="table-cols" type="text">
+          <label class="input-component__label" for="lastName">Last Name</label>
+        </div>
+        <div class="input-component">
+          <input id="yearOfAdmission" class="input-component__input" name="yearOfAdmission" required id="table-cols" type="text">
+          <label class="input-component__label" for="yearOfAdmission">Year of Admission</label>
+        </div>
+        <div class="input-component">
+          <input id="yearOfGraduation" class="input-component__input" name="yearOfGraduation" required id="table-cols" type="text">
+          <label class="input-component__label" for="yearOfGraduation">Year of Graduation</label>
+        </div>
+        <div class="input-component">
+          <input id="description" class="input-component__input" name="description" id="table-cols" type="text">
+          <label class="input-component__label" for="description">Description</label>
+        </div>
+        <input class="btn_submit" type="submit" value="Generate table">
+      </form>
       <table class="table" id="students-table">
         <thead>
           <tr>
@@ -117,15 +139,6 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="table__td"></td>
-            <td class="table__td"></td>
-            <td class="table__td"></td>
-            <td class="table__td"></td>
-            <td class="table__td"></td>
-            <td class="table__td"></td>
-            <td class="table__td"></td>
-          </tr>
         </tbody>
       </table>
     </div>
