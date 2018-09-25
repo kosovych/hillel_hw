@@ -13,12 +13,14 @@ function getParseJSON(elID, url) {
 
 function getStudentsJSON(ev, url, cd) {
   let xhr = new XMLHttpRequest();
-  xhr.open('GET', url, false);
+  xhr.open('GET', url, true);
+  xhr.onload = function() {
+    if(xhr.status != 200) {
+      console.log(`${xhr.status}:${xhr.statusText}`);
+    } else {
+      cd(JSON.parse(xhr.responseText), document.querySelector('#students-table tbody'));
+    }
+  }
   xhr.send();
 
-  if(xhr.status != 200) {
-    console.log(`${xhr.status}:${xhr.statusText}`);
-  } else {
-    cd(JSON.parse(xhr.responseText), document.querySelector('#students-table tbody'));
-  }
 }
