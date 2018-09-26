@@ -70,7 +70,7 @@ function CarouselConstructor($container, options) {
   }
   
   if(this.options.title) {
-    console.log(this.titleInit('init'));
+    this.titleInit('init');
   }
   
   Object.defineProperty(this, '_curentSlide', {
