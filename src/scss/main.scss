@@ -373,6 +373,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .viewport-badge {
+  opacity: 0;
   position: fixed;
   right: 16px;
   top: 8px;
