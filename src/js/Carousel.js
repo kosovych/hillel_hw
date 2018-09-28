@@ -6,10 +6,11 @@ function Carousel($container, options) {
 
 function CarouselConstructor($container, options) {
   this.options = options;
-  this.$container = document.querySelector($container);
-  this.$container.carouselObj = this;
 
-  this.$carouselWrapper = this.$container.firstElementChild;
+  this.$container = document.querySelector($container); // .carousel
+
+  this.$carouselWrapper = this.$container.firstElementChild; // .carousel-wrapper
+  console.log(this.$carouselWrapper);
   this.$carouselWrapper.firstElementChild.append(this.$carouselWrapper.firstElementChild.children[0].cloneNode(true));
 
   this.$carouselWrapper
@@ -20,23 +21,23 @@ function CarouselConstructor($container, options) {
   this.$slidesWrapper = this.$carouselWrapper.firstElementChild;
   this.$slides = Array.from(this.$slidesWrapper.children);
   this.curentSlide = 1;
+  let self = this;
 
   this.$carouselWrapper.style = `max-width: ${(this.$container.offsetWidth - 40)}px`;
-
-  let self = this;
   this.slideWidth = this.$carouselWrapper.offsetWidth * this.$slides.length;
   this.slidesWidth = this.$slides.map(el => el.offsetWidth);
-
-  this.$slides.map(el => {
+  this.$slides.forEach(el => {
+    console.log(this.$slidesWrapper.offsetWidth);
     el.style.width = `${this.$slidesWrapper.offsetWidth}px`;
   });
+  this.$slidesWrapper.style.width = `${this.slideWidth}px`;
 
   replaceSlider(null, 'start', this);
   setTimeout(() => {
     this.$slidesWrapper.style.transition = 'left 0.3s';
   }, 0);
 
-  this.$slidesWrapper.style.width = `${this.slideWidth}px`;
+
 
   this.$prevSlideBtn = append('button', 'carousel-btn prev', this.$container);
 
@@ -85,6 +86,11 @@ function CarouselConstructor($container, options) {
       this.updateDot('add', this.curentSlide);
     }
   });
+
+  window.addEventListener('resize', ()=>{
+    this.responsive();
+  });
+
 }
 
 function append(el, $class, $append) {
@@ -218,6 +224,17 @@ CarouselConstructor.prototype.titleInit = function (mod) {
   });
 }
 
+CarouselConstructor.prototype.responsive = function() {
+
+  if(this.currentResponsiveTimeout) {
+    clearTimeout(this.currentResponsiveTimeout)
+  }
+  this.currentResponsiveTimeout = setTimeout(() => {
+    //-->
+    this.$carouselWrapper.style = `max-width: ${(this.$container.offsetWidth - 40)}px`;
+    //
+  }, 500)
+}
 
 function moveToSlide(context, toSlide) {
   context.$slidesWrapper.style.left = `-${(context.slideWidth / context.$slides.length) * toSlide + (context.slideWidth / context.$slides.length)}px`;
