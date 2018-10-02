@@ -8,17 +8,18 @@
   <title>Document</title>
   <link rel="stylesheet" href="/css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+
 </head>
 
 <body>
-  
+
   <div id="viewport-badge" class="viewport-badge"></div>
-  
+
   <header class="header-wrapper">
     <div class="header container fl-row-sp-b">
-      
+
       <div class="header__logo fl-row-sp-b">
         <img class="logo" src="/img/logo.png" alt="Logo">
         <h2 class="logo__title">
@@ -32,7 +33,7 @@
           <span class="title-sumbol">h</span>
         </h2>
       </div>
-      
+
       <nav class="header__nav nav fl-row">
         <div class="nav__el">Item</div>
         <div class="nav__el">Item</div>
@@ -40,17 +41,18 @@
         <div class="nav__el">Item</div>
         <div class="nav__el">Item</div>
       </nav>
-      
+
     </div>
   </header>
-  
+
   <main class="main-container">
     <input type="checkbox" name="qwerty" id="qwerty">
     <aside class="menu">
       <ul class="menu-list tabs">
-        <li class="menu-list__el tab-el" data-tab-name="table-gen">Table generator</li>
         <li class="menu-list__el tab-el" data-tab="selected" data-tab-name="carousel">Carousel</li>
+        <li class="menu-list__el tab-el" data-tab-name="table-gen">Table generator</li>
         <li class="menu-list__el tab-el" data-tab-name="dinamic-table">Dinamic Table</li>
+        <li class="menu-list__el tab-el" data-tab-name="weather-app">Weather App</li>
       </ul>
       <label for="qwerty" class="menu-btn">
         <span></span>
@@ -74,7 +76,7 @@
       </section>
     </div>
     <div class="tab content" data-tab-content="carousel">
-      
+
       <div class="cats carousel">
         <div class="carousel-wrapper">
           <div class="carousel-slides">
@@ -85,7 +87,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="another-cats carousel">
         <div class="carousel-wrapper">
           <div class="carousel-slides">
@@ -110,11 +112,13 @@
           <label class="input-component__label" for="lastName">Last Name</label>
         </div>
         <div class="input-component">
-          <input id="yearOfAdmission" class="input-component__input" name="yearOfAdmission" required id="table-cols" type="number"  maxlength="4">
+          <input id="yearOfAdmission" class="input-component__input" name="yearOfAdmission" required id="table-cols"
+            type="number" maxlength="4">
           <label class="input-component__label" for="yearOfAdmission">Year of Admission</label>
         </div>
         <div class="input-component">
-          <input id="yearOfGraduation" class="input-component__input" name="yearOfGraduation" required id="table-cols" type="number"  maxlength="4">
+          <input id="yearOfGraduation" class="input-component__input" name="yearOfGraduation" required id="table-cols"
+            type="number" maxlength="4">
           <label class="input-component__label" for="yearOfGraduation">Year of Graduation</label>
         </div>
         <div class="input-component">
@@ -139,8 +143,15 @@
         </tbody>
       </table>
     </div>
+
+    <div class="tab dinamic-table content" data-tab-content="weather-app">
+      <div class="input-component">
+        <input id="google-places" autocomplete="none" class="input-component__input" data-type="google-autocomplete" placeholder="">
+        <label class="input-component__label" for="google-places">Enter the city</label>
+      </div>
+    </div>
   </main>
-  
+
   <footer class="footer">
     <p>© 2018 Kosovych. All rights reserved.</p>
     <div class="clock">
@@ -150,7 +161,7 @@
       <span>:</span>
       <span id="clock-second">00</span>
     </div>
-    
+
     <div id="timer" class="timer">
       <span id="timer-hour">00</span>
       <span>:</span>
@@ -158,10 +169,12 @@
       <span>:</span>
       <span id="timer-second">00</span>
     </div>
-    
+
   </footer>
-  
-  <script src="/js/bundle.js"></script>
+
+  <script defer src="/js/autocomplete.js"></script>
+
+  <script defer src="/js/bundle.js"></script>
 </body>
 
 </html>
