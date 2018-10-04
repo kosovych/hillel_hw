@@ -563,3 +563,14 @@ tr.on-edit {
 .op-0 {
   opacity: 0 !important;
 }
+
+//Weather
+
+.weather-app {
+  color: $second-light;
+  display: inline-flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
