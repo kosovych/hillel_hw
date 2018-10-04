@@ -11,7 +11,7 @@ function initAutocomplete() {
     let lng = selectedPlace.geometry.location.lng();
 
     console.log(selectedPlace);
-    getWeather(lat, lng)
+    getWeather(lat, lng, $weatherContainer)
   });
 }
 
@@ -25,7 +25,8 @@ let weathrKEY = '380c88df3fbf4c5db27e7cce0379ead1';
 let proxi = 'https://cors-anywhere.herokuapp.com/';
 let $weatherContainer = document.getElementById('weather-app-id');
 
-function getWeather(lat, lng) {
+function getWeather(lat, lng, weatherContainer) {
+  weatherContainer.classList.add('onload');
     fetch(`https://api.weatherbit.io/v2.0/current?&lat=${lat}&lon=${lng}&key=${weathrKEY}`, {method: 'GET'})
     .then(res => res.json())
       .then(data => parseData(data))
@@ -52,5 +53,6 @@ function renderWeather(container, weatherObj) {
     <p class="weather-app__desc">${weatherObj.descroption}</p>
     <h4 class="weather-app__temp">${weatherObj.temp} &deg;C</h4>
   `;
+  container.classList.remove('onload');
   return this
 }
