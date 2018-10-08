@@ -5,6 +5,7 @@ const checkInputsHasValue = require('./checkInputsHasValue.js');
 const windowSizeBadge = require('./windowSizeBadge.js');
 const Tab = require('./Tab.js');
 const Carousel = require('./Carousel');
+const CarouselClass = require('./Carousel-Class');
 
 const $tableGenerator = document.getElementById('table-generator');
 let $inputs = document.getElementsByClassName('input-component__input');
@@ -71,5 +72,14 @@ const carousel = Carousel('.carousel', {
   title: true
 });
 const carousel2 = Carousel('.another-cats', {
+  autoPlay: true
+});
+
+const carousel3 = CarouselClass('.class-cats', {
+  autoPlay: false,
+  dots: true,
+  title: true
+});
+const carousel4 = CarouselClass('.another-class-cats', {
   autoPlay: true
 });
