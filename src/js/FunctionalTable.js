@@ -1,5 +1,12 @@
 module.exports = FuncTableConctructor;
 let $ = require('jquery');
+const checkInputsHasValue = require('./checkInputsHasValueHandler.js');
+
+window.addEventListener('focusout', (ev) => {
+  if (ev.target.classList.contains('input-component__input')) {
+    checkInputsHasValue(null, ev.target);
+  }
+})
 
 function FuncTableConctructor($container, model) {
   return new FuncTable($container, model);
@@ -36,4 +43,10 @@ FuncTable.prototype.initForm = function () {
   }));
   
   this.$container.append(this.$form);
+
+  this.$form.on('submit', studentFormHandler);
+}
+
+function studentFormHandler(ev) {
+  console.log('submited');
 }
