@@ -9,6 +9,7 @@ const getParseJSON = require('./getParseJSON');
 const generStudentTable = require('./GenerStudentTable');
 const studentsAddEventHandler = require('./studentsAddEventHandler.js');
 const editStudentsHandler = require('./editStudentsHandler.js');
+const FunctionalTable = require('./FunctionalTable');
 
 const $tableGenerator = document.getElementById('table-generator');
 let $inputs = document.getElementsByClassName('input-component__input');
@@ -92,3 +93,17 @@ let students = getParseJSON('get-students-btn', '/database/students.json');
 document.getElementById('student-table').addEventListener('submit', (ev) => ev.preventDefault());
 document.getElementById('student-table').addEventListener('submit', studentsAddEventHandler);
 document.querySelector('#students-table tbody').addEventListener('click', editStudentsHandler);
+
+// Functional Table
+
+let modelArr = [
+  'name',
+  'last name',
+  'age',
+  'faculty',
+  'course',
+  'url',
+  'phone'
+]
+
+let funcTable = FunctionalTable(document.getElementById('func-table'), modelArr);
