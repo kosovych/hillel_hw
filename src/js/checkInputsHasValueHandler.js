@@ -1,5 +1,6 @@
 module.exports = checkInputsHasValueHandler;
 
+
 function checkInputsHasValueHandler(ev, domEl) {
   if (ev !== null && domEl === null) {
     let $evTarget = ev.target;

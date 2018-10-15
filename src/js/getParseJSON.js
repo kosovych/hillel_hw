@@ -16,7 +16,6 @@ function getStudentsJSON(ev, url, cd) {
   xhr.open('GET', url, true);
   xhr.onload = function() {
     if(xhr.status != 200) {
-      console.log(`${xhr.status}:${xhr.statusText}`);
     } else {
       cd(JSON.parse(xhr.responseText), document.querySelector('#students-table tbody'));
     }

@@ -6,6 +6,5 @@ function getIndexOfEl(ev) {
 
   let arrOfTableData = Array.from(curentRow.children);
 
-  console.dir(arrOfTableData);
   alert(`Index of current cell is ${arrOfTableData.indexOf($evTarget)}`);
 }

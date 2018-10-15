@@ -10,7 +10,6 @@ function CarouselConstructor($container, options) {
   this.$container = document.querySelector($container); // .carousel
 
   this.$carouselWrapper = this.$container.firstElementChild; // .carousel-wrapper
-  console.log(this.$carouselWrapper);
   this.$carouselWrapper.firstElementChild.append(this.$carouselWrapper.firstElementChild.children[0].cloneNode(true));
 
   this.$carouselWrapper
@@ -27,7 +26,6 @@ function CarouselConstructor($container, options) {
   this.slideWidth = this.$carouselWrapper.offsetWidth * this.$slides.length;
   this.slidesWidth = this.$slides.map(el => el.offsetWidth);
   this.$slides.forEach(el => {
-    console.log(this.$slidesWrapper.offsetWidth);
     el.style.width = `${this.$slidesWrapper.offsetWidth}px`;
   });
   this.$slidesWrapper.style.width = `${this.slideWidth}px`;

@@ -26,7 +26,6 @@ function Clock($hours, $minutes, $seconds, $container = null, isClock = true) {
 }
 
 Clock.prototype.log = function () {
-  console.log(this);
 }
 
 Clock.prototype.incHour = function () {
