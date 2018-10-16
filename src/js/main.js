@@ -2,6 +2,7 @@ const Clock = require('./clock.js');
 const tableGenerator = require('./tableGenerator.js');
 const getIndexOfEl = require('./getIndexOfEl.js');
 const checkInputsHasValue = require('./checkInputsHasValue.js');
+const checkInputsHasValueHandler = require('./checkInputsHasValueHandler');
 const windowSizeBadge = require('./windowSizeBadge.js');
 const Tab = require('./Tab.js');
 const Carousel = require('./Carousel');
@@ -59,6 +60,12 @@ windowSizeBadge($viewportBadge);
 
 checkInputsHasValue($inputs);
 
+window.addEventListener('focusout', (ev) => {
+  if (ev.target.classList.contains('input-component__input')) {
+    checkInputsHasValueHandler(null, ev.target);
+  }
+});
+
 //table gen
 $tableGenerator.addEventListener('submit', function (ev) {
   ev.preventDefault();
@@ -97,13 +104,13 @@ document.querySelector('#students-table tbody').addEventListener('click', editSt
 // Functional Table
 
 let modelArr = [
-  'name',
-  'last name',
-  'age',
-  'faculty',
-  'course',
-  'url',
-  'phone'
+  {title: 'name', require: true},
+  {title: 'last name', require: true},
+  {title: 'age'},
+  {title: 'faculty', require: true},
+  {title: 'course', require: true, type: 'number'},
+  {title: 'url'},
+  {title: 'phone'}
 ]
 
 let funcTable = FunctionalTable(document.getElementById('func-table'), modelArr);
