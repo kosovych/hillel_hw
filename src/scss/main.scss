@@ -612,7 +612,36 @@ tr.on-edit {
   }
 }
 
+// Func table 
+.sort-column {
+  cursor: context-menu;
+}
+
+.current-col-sort {
+  position: relative;
+  display: inline-block;
+  &:after {
+    content: '⮝';
+    position: absolute;
+    font-size: 10px;
+    width: 10px;
+    height: 10px;
+    text-align: center;
+    left: 100%;
+    top: 50%;
+    transition: all .3s;
+    transform: rotateZ(0deg), translateY(-50%);
+
+  }
+  &.sort-reverse::after {
+    transform: rotateZ(180deg), translateY(-50%);
+  }
+}
+
+
+
 @keyframes rotateLoader {
   from {transform: rotate(0deg)}
   to {transform: rotate(360deg)}
 }
+
