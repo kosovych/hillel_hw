@@ -17,6 +17,10 @@ function FuncTable(container, model) {
   this.model = model;
 
   this.initForm();
+
+  if(!localStorage.getItem('functional_table')) {
+    localStorage.setItem('functional_table', JSON.stringify([]));
+  }
 }
 
 FuncTable.prototype.initForm = function () {
@@ -44,9 +48,34 @@ FuncTable.prototype.initForm = function () {
   
   this.$container.append(this.$form);
 
-  this.$form.on('submit', studentFormHandler);
+  this.$form.on('submit', (ev) => {
+    studentFormHandler(ev, this)
+  });
 }
 
-function studentFormHandler(ev) {
-  console.log('submited');
+FuncTable.prototype.tableInit = function() {
+  let $table = $('<table/>', {'class': 'table'});
+  let $thead = $('<thead/>');
+  let $tbody = $('<tbody/>');
+  let $tr = $('<tr>');
+  
+  this.model.forEach( el => {
+    $tr.append($('<td/>', {html: `${el}`}));
+  });
+
+  $tr.prepend($('<td/>', {html: '№'}));
+  this.$container.append($table.append($thead.append($tr)).append($tbody));
+
+  this.$table = $table;
+}
+
+function studentFormHandler(ev, context) {
+  ev.preventDefault();
+  let formData = new FormData(ev.target);
+
+  if(!context.$table) {
+    context.tableInit();
+  }
+
+
 }
