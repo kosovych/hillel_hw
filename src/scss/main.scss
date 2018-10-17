@@ -623,18 +623,19 @@ tr.on-edit {
   &:after {
     content: '⮝';
     position: absolute;
-    font-size: 10px;
+    font-size: 12px;
     width: 10px;
     height: 10px;
     text-align: center;
-    left: 100%;
+    left: 110%;
     top: 50%;
     transition: all .3s;
-    transform: rotateZ(0deg), translateY(-50%);
+    transform: rotateZ(0deg) translateY(-50%);
+    transform-origin: 50% 30%;
 
   }
   &.sort-reverse::after {
-    transform: rotateZ(180deg), translateY(-50%);
+    transform: rotateZ(180deg) translateY(-50%);
   }
 }
 

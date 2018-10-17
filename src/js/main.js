@@ -21,14 +21,14 @@ let $formsStudent = document.getElementById('student-table');
 //timer & clock
 const tab = new Tab();
 const clock = new Clock(document.getElementById('clock-hour'),
-  document.getElementById('clock-minute'),
-  document.getElementById('clock-second'));
+document.getElementById('clock-minute'),
+document.getElementById('clock-second'));
 
 const timer = new Clock(document.getElementById('timer-hour'),
-  document.getElementById('timer-minute'),
-  document.getElementById('timer-second'),
-  document.getElementById('timer'),
-  false);
+document.getElementById('timer-minute'),
+document.getElementById('timer-second'),
+document.getElementById('timer'),
+false);
 
 clock.start();
 timer.start();
@@ -70,12 +70,12 @@ window.addEventListener('focusout', (ev) => {
 $tableGenerator.addEventListener('submit', function (ev) {
   ev.preventDefault();
   let table = tableGenerator(document.getElementById('table-rows').value, document.getElementById('table-cols').value);
-
+  
   if (!table) {
     ev.target.reset();
     return;
   }
-
+  
   ev.target.reset();
   document.getElementById('table-container').appendChild(table);
   table.addEventListener('click', function (ev) {
