@@ -110,7 +110,7 @@ let modelArr = [
   {title: 'faculty', require: true},
   {title: 'course', require: true, type: 'number'},
   {title: 'url'},
-  {title: 'phone'}
+  {title: 'phone', mask: '+3 8(099) 999 99 99'}
 ]
 
 let funcTable = FunctionalTable(document.getElementById('func-table'), modelArr);

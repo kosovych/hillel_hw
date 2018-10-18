@@ -1,5 +1,4 @@
 module.exports = FuncTableConctructor;
-const $ = require('jquery');
 const checkInputsHasValueHandler = require('./checkInputsHasValueHandler');
 
 
@@ -16,7 +15,7 @@ function FuncTable(container, model) {
   
   if(this.studentDB.length > 0) {
     this.tableInit();
-    renderStudent(this.studentDB, this);
+    renderStudent.call(this, this.studentDB);
   }
 }
 
@@ -44,6 +43,13 @@ FuncTable.prototype.initForm = function () {
       
       'class': 'input-component'
     });
+
+    if(el.mask) {
+      console.log(el.mask);
+      jQuery(function($){
+        input.find('input').mask(el.mask);
+     });
+    }
     this.$form.append(input);
   });
   
@@ -107,7 +113,7 @@ FuncTable.prototype.addStudent = function (studentObj) {
   }
   
   localStorage.setItem('studentDB', JSON.stringify(this.studentDB));
-  renderStudent(studentObj, this);
+  renderStudent.call(this, studentObj);
   console.dir(this.studentDB);
 }
 
@@ -136,59 +142,49 @@ function submitFormHandler(ev, context) {
   });
 }
 
-function renderStudent(StudentObj, context) {
+function renderStudent(StudentObj) {
   
   if(StudentObj.length) {
-    return renderStudentDB(StudentObj, context);
+    return renderStudentDB.call(this, StudentObj);
   }
   
   let $tr =  $('<tr/>', {html: '<td>1</td>'});
   
-  context.model.forEach( el => {
+  this.model.forEach( el => {
     $tr.append($('<td/>', {html: `${StudentObj[el.title]}`}));
   });
   
-  context.$table.find('tbody').prepend($tr);
+  this.$table.find('tbody').prepend($tr);
   
-  if (context.$tbody.children().length > 1) {
-    let $tbodyChildren = context.$tbody.children();
+  if (this.$tbody.children().length > 1) {
+    let $tbodyChildren = this.$tbody.children();
     for(let i = 1, $length = $tbodyChildren.length; i <= $length - 1; i++) {
       $tbodyChildren[i].children[0].innerHTML = i + 1;
     }
   }
 }
 
-function renderStudentDB(ArrOfStudentObj, context) {
+function renderStudentDB(ArrOfStudentObj) {
   ArrOfStudentObj.forEach( StudentObj => {
-    renderStudent(StudentObj, context);
+    renderStudent.call(this, StudentObj);
   })
 }
 
 
 function sortColumn(isSortByOrder, index) {
-  console.log(isSortByOrder);
-  console.log(this);
-  console.log(index);
-
-  let sortIndex = isSortByOrder ? 1 : -1;
+  console.log(this.studentDB);
+  let sortIndex = isSortByOrder ? -1 : 1;
   
-  // USE MODEL !!!
-  // if(!$(ev.target).hasClass('sort-reverse')) {
-  //   sortIndex = -sortIndex;
-  // }
-
-  // let sortedArr = arrOfRows.sort((row_a, row_b) => {
-  //   if (row_a.children[rowIndex].innerHTML > row_b.children[rowIndex].innerHTML) {
-  //     return sortIndex;
-  //   }
-  //   if (row_a.children[rowIndex].innerHTML < row_b.children[rowIndex].innerHTML) {
-  //     return sortIndex;
-  //   }
-  //   return 0;
-  // });
-
-  // this.$tbody.html('');
-  // arrOfRows.forEach( row => {
-  //   this.$tbody.append($(row));
-  // })
+  const sortedArr = this.studentDB.slice(0).sort((currentStudent, nextStudent) => {
+    if (currentStudent[this.model[index - 1].title] > nextStudent[this.model[index - 1].title]) {
+      return sortIndex;
+    }
+    if (currentStudent[this.model[index - 1].title] < nextStudent[this.model[index - 1].title]) {
+      return sortIndex;
+    }
+    return 0;
+  });
+  console.log(sortedArr);
+  this.$tbody.html('');
+  renderStudent.call(this, sortedArr);
 }
