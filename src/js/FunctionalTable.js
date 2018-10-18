@@ -45,7 +45,6 @@ FuncTable.prototype.initForm = function () {
     });
 
     if(el.mask) {
-      console.log(el.mask);
       jQuery(function($){
         input.find('input').mask(el.mask);
      });
@@ -85,9 +84,6 @@ FuncTable.prototype.tableInit = function() {
     }
     
     this.currentSortRow = $evTarget;
-    console.log(this.currentSortRow);
-
-
   });
   
   this.$tbody = $('<tbody/>');
@@ -114,7 +110,6 @@ FuncTable.prototype.addStudent = function (studentObj) {
   
   localStorage.setItem('studentDB', JSON.stringify(this.studentDB));
   renderStudent.call(this, studentObj);
-  console.dir(this.studentDB);
 }
 
 
@@ -172,7 +167,6 @@ function renderStudentDB(ArrOfStudentObj) {
 
 
 function sortColumn(isSortByOrder, index) {
-  console.log(this.studentDB);
   let sortIndex = isSortByOrder ? -1 : 1;
   
   const sortedArr = this.studentDB.slice(0).sort((currentStudent, nextStudent) => {
@@ -184,7 +178,6 @@ function sortColumn(isSortByOrder, index) {
     }
     return 0;
   });
-  console.log(sortedArr);
   this.$tbody.html('');
   renderStudent.call(this, sortedArr);
 }

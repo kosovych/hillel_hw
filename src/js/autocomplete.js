@@ -79,7 +79,6 @@ function autocompleteHandler() {
   let lng;
   let city;
   const selectedPlace = this.getPlace();
-  console.log(selectedPlace);
   lat = selectedPlace.geometry.location.lat();
   lng = selectedPlace.geometry.location.lng();
   city = selectedPlace.vicinity;
